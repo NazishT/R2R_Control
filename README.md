@@ -62,7 +62,6 @@ For building map on Master, edit ```hector_mapping/launch/mapping_default.launch
 ```
 roslaunch bilateral_teleop empty_world.launch
 roslaunch bilateral_teleop husky.launch
-rosrun bilateral_teleop odom_reader_husky.py
 ```
 Set tf_transforms from map to odom as we disabled it in mapper. And from master's base_footprint to labor's base_laser
 ```
