@@ -88,17 +88,4 @@ roslaunch hector_mapping mapping_default
 roslaunch hector_navigation move_base.launch 
 ```
 
-<b> Visualize on rviz on Master </b>
-```
-roslaunch husky_viz view_robot.launch
-```
-<b> Hector SLAM on Master </b>
-```
-roslaunch hector_mapping mapping_default 
-```
-<b> move_base on Master </b>
-```
-roslaunch hector_navigation move_base.launch 
-```
-
 
