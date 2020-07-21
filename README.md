@@ -58,7 +58,7 @@ For building map on Master, edit ```hector_mapping/launch/mapping_default.launch
 <"arg name ="pub_map_odom_transform" value ="false">
 <"arg name ="scan_topic" value ="h2/scan">
 ```
-<b> Spawn husky on Laptop1 - Master  with odom_reader_husky node</b> 
+<b> Spawn husky on Laptop1 - Master </b> 
 ```
 roslaunch bilateral_teleop empty_world.launch
 roslaunch bilateral_teleop husky.launch
@@ -72,7 +72,7 @@ rosrun tf static_transform_publisher 0 0 0 0 0 0 base_footprint h2/base_laser 50
 <b> Spawn husky on Laptop2 - Labor with odom_reader_husky node </b> 
 ```
 roslaunch bilateral_teleop husky.launch
-rosrun bilateral_teleop odom_reader_husky.launch
+rosrun bilateral_teleop odom_reader_husky2.py
 ```
 <b> Visualize on rviz on Master </b>
 ```
@@ -87,4 +87,50 @@ roslaunch hector_mapping mapping_default
 roslaunch hector_navigation move_base.launch 
 ```
 
+# Scenario 4: Master robot builds a map of its own environment (SLAM and move_base running on Master). Labor robot reads odometry of Master and provides feedback of obstacles. 
+
+- Using labor robot with changed namespaces now. 
+
+- Master's odom reader 
+  - subscribes to: h2/joy_teleop/cmd_vel (priority: 15)
+  - publishes to: /twist_marker_server/cmd_vel (priority: )
+  
+- Labor's odom reader 
+ - subscribes to: 
+ - publishes to: 
+ 
+- Labor's feedback node 
+ - subscribes to: h2/scan
+ - publishes to: 
+ 
+ <b> Spawn husky on Laptop1 - Master </b> 
+ ```
+ roslaunch bilateral_teleop empty_world.launch 
+ roslaunch bilateral_teleop husky.launch
+ rosrun bilateral_teleop odom_reader_husky.py
+ ```
+<b> Spawn husky on Laptop2 - Labor with odom_reader_husky and feedback node </b> 
+```
+roslaunch bilateral_teleop husky.launch
+rosrun bilateral_teleop odom_reader_husky2.py
+rosrun bilateral_teleop force_feedback.py
+```
+<b> Visualize on rviz on Master </b>
+```
+roslaunch husky_viz view_robot.launch
+```
+<b> Hector SLAM on Master </b>
+```
+roslaunch hector_mapping mapping_default 
+```
+<b> move_base on Master </b>
+```
+roslaunch hector_navigation move_base.launch 
+```
+
+
+ 
+  
+  
+  
 
