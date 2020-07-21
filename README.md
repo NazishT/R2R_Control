@@ -89,8 +89,8 @@ roslaunch hector_navigation move_base.launch
 
 # Scenario 4: 
 Master robot builds a map of its own environment (SLAM and move_base running on Master). Labor robot reads odometry of Master and provides feedback of obstacles. 
-
-- Using labor robot with changed namespaces now. 
+wis
+- Using labor robot with changed namespaces now. Both robot use `twist_mux` with same priorities of topics in `twist_mux.yaml` file. (/husky_control/config/twist_mux.yaml)
 - Master's odom reader
 ```
   - subscribes to: h2/joy_teleop/cmd_vel (priority: 15)
@@ -98,13 +98,13 @@ Master robot builds a map of its own environment (SLAM and move_base running on 
 ```
 - Labor's odom reader 
 ```
- - subscribes to: 
- - publishes to: 
+ - subscribes to: odometry/filtered
+ - publishes to: /h2/cmd_vel
 ```
 - Labor's feedback node 
 ```
  - subscribes to: h2/scan
- - publishes to: 
+ - publishes to: h2/joy_teleop/cmd_vel 
 ```
  <b> Spawn husky on Laptop1 - Master </b> 
  ```
