@@ -87,22 +87,25 @@ roslaunch hector_mapping mapping_default
 roslaunch hector_navigation move_base.launch 
 ```
 
-# Scenario 4: Master robot builds a map of its own environment (SLAM and move_base running on Master). Labor robot reads odometry of Master and provides feedback of obstacles. 
+# Scenario 4: 
+Master robot builds a map of its own environment (SLAM and move_base running on Master). Labor robot reads odometry of Master and provides feedback of obstacles. 
 
 - Using labor robot with changed namespaces now. 
-
-- Master's odom reader 
+- Master's odom reader
+```
   - subscribes to: h2/joy_teleop/cmd_vel (priority: 15)
   - publishes to: /twist_marker_server/cmd_vel (priority: )
-  
+```
 - Labor's odom reader 
+```
  - subscribes to: 
  - publishes to: 
- 
+```
 - Labor's feedback node 
+```
  - subscribes to: h2/scan
  - publishes to: 
- 
+```
  <b> Spawn husky on Laptop1 - Master </b> 
  ```
  roslaunch bilateral_teleop empty_world.launch 
