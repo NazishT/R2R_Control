@@ -94,17 +94,17 @@ wis
 - Master's odom reader
 ```
   - subscribes to: h2/joy_teleop/cmd_vel (priority: 15)
-  - publishes to: /twist_marker_server/cmd_vel (priority: )
+  - publishes to: /twist_marker_server/cmd_vel (priority: 2)
 ```
 - Labor's odom reader 
 ```
- - subscribes to: odometry/filtered
- - publishes to: /h2/cmd_vel
+ - subscribes to: odometry/filtered 
+ - publishes to: /h2/cmd_vel (priority: 1)
 ```
 - Labor's feedback node 
 ```
  - subscribes to: h2/scan
- - publishes to: h2/joy_teleop/cmd_vel 
+ - publishes to: h2/joy_teleop/cmd_vel (priority: 15)
 ```
  <b> Spawn husky on Laptop1 - Master </b> 
  ```
