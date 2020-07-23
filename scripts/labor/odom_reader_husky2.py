@@ -28,8 +28,11 @@ def odom_callback(msg):
 if __name__=='__main__':
      rospy.init_node('odom_reader_husky2', anonymous=True)     
      sub = rospy.Subscriber('odometry/filtered', Odometry, odom_callback) 
-     #pub = rospy.Publisher('robot2/mobile_base/commands/velocity', Twist, queue_size=100)
+     # for scenario 3
+     #sub = rospy.Subscriber('h2/odometry/filtered', Odometry, odom_callback)
      pub = rospy.Publisher('/h2/cmd_vel', Twist, queue_size=10)
+     # for scenario 3 
+     # pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
      rate = rospy.Rate(10)
      while not rospy.is_shutdown():
      	rate.sleep()
