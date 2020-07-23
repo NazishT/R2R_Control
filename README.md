@@ -43,7 +43,7 @@ roslaunch hector_navigation move_base.launch
 ```
 % if move_base gives error set ``` <arg name="no_static_map" value="true"/> ``` or use ``` roslaunch hector_navigation move_base_mapless_demo.launch  ```
 
-# Scenario 3: 
+# Scenario 3: (version 1) 
 - Husky1 is the Master. Husky2 is the labor. Husky1 is running without nampespace. Husky2 with namespace. Husky1 is subscribing to the odom and laser data of Husky2 and simulatenously building a map through Hector SLAM and navigation through move_base. 
 
 To set namespace on the labor side, edit ```arg name="robot_namespace" value="h2/" ``` in all three files:
@@ -80,11 +80,51 @@ roslaunch husky_viz view_robot.launch
 ```
 <b> Hector SLAM on Master </b>
 ```
-roslaunch hector_mapping mapping_default 
+roslaunch hector_mapping mapping_default.launch
 ```
 <b> move_base on Master </b>
 ```
-roslaunch hector_navigation move_base.launch 
+roslaunch husky_navigation move_base.launch 
+```
+# Scenario 3: (version 2) 
+- Husky2 is the Master. Husky1 is the labor. Husky2 is running without nampespace. Husky1 with namespace(\h2). Husky2 is subscribing to the odom and laser data of Husky2 and simulatenously building a map through Hector SLAM and navigation through move_base.
+
+To set namespace on the Master side, edit ```arg name="robot_namespace" value="h2/" ``` in all three files on the Master:
+```
+husky_gazebo/launch/spawn_husky.launch
+husky_description/launch/description.launch
+husky_description/urdf/husky.urdf.xacro 
+```
+No changes are required in `hector_mapping/mapping_default.launch`. Remap velocity topic in move_base.launch (at Master). Refer to the move_base.launch in the code provided.
+```
+<remap from="cmd_vel" to="h2/cmd_vel"/>
+``` 
+<b> Run roscore on Master </b>
+```
+roscore 
+``` 
+<b> Spawn husky on Laptop1 - Master </b> 
+```
+roslaunch bilateral_teleop empty_world.launch
+roslaunch bilateral_teleop husky.launch
+```
+
+<b> Spawn husky on Laptop2 - Labor with odom_reader_husky node </b> 
+```
+roslaunch bilateral_teleop husky.launch
+rosrun bilateral_teleop odom_reader_husky2.py
+```
+<b> Visualize on rviz on Master </b>
+```
+roslaunch husky_viz view_robot.launch
+```
+<b> Hector SLAM on Master </b>
+```
+roslaunch hector_mapping mapping_default.launch
+```
+<b> move_base on Master </b>
+```
+roslaunch husky_navigation move_base.launch 
 ```
 
 # Scenario 4: 
@@ -124,11 +164,11 @@ roslaunch husky_viz view_robot.launch
 ```
 <b> Hector SLAM on Master </b>
 ```
-roslaunch hector_mapping mapping_default 
+roslaunch hector_mapping mapping_default.launch 
 ```
 <b> move_base on Master </b>
 ```
-roslaunch hector_navigation move_base.launch 
+roslaunch husky_navigation move_base.launch 
 ```
 
 
