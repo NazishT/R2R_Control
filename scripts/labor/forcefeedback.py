@@ -16,8 +16,8 @@ def callback(msg):
                
 
 rospy.init_node('force_feedback')
-sub=rospy.Subscriber('/h2/scan', LaserScan, callback)
-pub1= rospy.Publisher('/h2/joy_teleop/cmd_vel',Twist, queue_size=10)
+sub=rospy.Subscriber('/scan', LaserScan, callback)
+pub1= rospy.Publisher('/joy_teleop/cmd_vel',Twist, queue_size=10)
 
 rate=rospy.Rate(10)
 
