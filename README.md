@@ -87,7 +87,7 @@ roslaunch hector_mapping mapping_default.launch
 roslaunch husky_navigation move_base.launch 
 ```
 # Scenario 3: (version 2) 
-- Husky2 is the Master. Husky1 is the labor. Husky2 is running with nampespace. Husky1 without namespace(\h2). Husky2 is subscribing to the odom and laser data of Husky2 and simulatenously building a map through Hector SLAM and navigation through move_base.
+- Husky2 is the Master. Husky1 is the labor. Husky2 is running with nampespace. Husky1 without namespace. Husky2 is subscribing to the odom and laser data of Husky2 and simulatenously building a map through Hector SLAM and navigation through move_base.
 
 To set namespace on the Master side, edit ```arg name="robot_namespace" value="h2/" ``` in all three files on the Master:
 ```
