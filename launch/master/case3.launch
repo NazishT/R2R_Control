@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<launch>
+   <!-- empty world in gazebo -->
+   <include file="$(find bilateral_teleop)/launch/empty_world.launch"/>
+
+   <!-- spawn husky with no namespaces -->
+   <include file="$(find bilateral_teleop)/launch/husky.launch"/>
+
+   <!-- visualize in Rviz -->
+   <include file="$(find husky_viz)/launch/view_robot.launch"/>
+
+   <!-- hector slam --> 
+   <include file="$(find hector_mapping)/launch/mapping_default.launch"/>
+
+   <!-- move_base -->
+   <include file="$(find husky_navigation)/launch/move_base_mapless_demo.launch"/>
+ 
+</launch>
