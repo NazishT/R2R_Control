@@ -43,7 +43,7 @@ roslaunch hector_navigation move_base.launch
 ```
 % if move_base gives error set ``` <arg name="no_static_map" value="true"/> ``` or use ``` roslaunch hector_navigation move_base_mapless_demo.launch  ```
 
-# Scenario 3: (version 1) 
+# Scenario 3: (version 1) -- Not used.
 - Husky1 is the Master. Husky2 is the labor. Husky1 is running without nampespace. Husky2 with namespace. Husky1 is subscribing to the odom and laser data of Husky2 and simulatenously building a map through Hector SLAM and navigation through move_base. 
 
 To set namespace on the labor side, edit ```arg name="robot_namespace" value="h2/" ``` in all three files:
@@ -129,7 +129,7 @@ roslaunch husky_navigation move_base.launch
 
 # Scenario 4: 
 Master robot builds a map of its own environment (SLAM and move_base running on Master). Labor robot reads odometry of Master and provides feedback of obstacles. 
-wis
+
 - Using labor robot with changed namespaces now. Both robot use `twist_mux` with same priorities of topics in `twist_mux.yaml` file. (/husky_control/config/twist_mux.yaml)
 - Master's odom reader
 ```
