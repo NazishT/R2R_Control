@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+   <!-- visualize in Rviz -->
+   <include file="$(find husky_viz)/launch/view_robot.launch"/>
+
+   <!-- hector slam --> 
+   <include file="$(find hector_mapping)/launch/mapping_default.launch"/>
+
+   <!-- move_base -->
+   <include file="$(find husky_navigation)/launch/move_base_mapless_demo.launch"/>
+ 
+</launch>
