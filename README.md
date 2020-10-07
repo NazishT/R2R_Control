@@ -1,4 +1,8 @@
 # robot_to_robot
+install the following: 
+sudo apt-get install ros-melodic-husky* (for all husky package dependencies) 
+
+
 
 # Scenario 1: 
 - Standalone husky on one laptop with hector_slam and move_base
