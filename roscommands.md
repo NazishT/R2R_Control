@@ -8,11 +8,12 @@ for example for case 1:
 use frame: 'map' 
 always set the orientation w as 1.0
 
-# setting up network_analysis files
-`rosrun network_analysis link_utilization.py'
-both files should be on master
-`rosrun network_analysis network_delay.cpp`
-on labor:
+# setting up network_analysis files (both files should be on master)
+`rosrun network_analysis link_utilization.py`
+
+`rosrun network_analysis network_delay.cpp` 
+
+# on labor:
 `rosrun network_analysis pingactionserver.cpp`
 
 # recording rosbags
