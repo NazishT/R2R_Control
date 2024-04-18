@@ -1,4 +1,4 @@
-# robot_to_robot
+# robot_to_robot_control
 install the following: 
 sudo apt-get install ros-melodic-husky* (for all husky package dependencies) 
 
